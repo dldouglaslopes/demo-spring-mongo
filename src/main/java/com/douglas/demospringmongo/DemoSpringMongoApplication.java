@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.douglas.demospringmongo.config.MongoConfig;
 import com.douglas.demospringmongo.domain.Address;
 import com.douglas.demospringmongo.domain.Client;
 import com.douglas.demospringmongo.domain.Contact;
@@ -30,6 +31,8 @@ public class DemoSpringMongoApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		MongoConfig config = new MongoConfig();
+		
 		Client client = new Client(null, "teste");		
 		clientRepository.saveAll(Arrays.asList(client));
 
@@ -40,5 +43,7 @@ public class DemoSpringMongoApplication implements CommandLineRunner{
 		Contact contact = new Contact(null, "name", "phone", client);			
 		client.getContacts().addAll(Arrays.asList(contact));		
 		contactRepository.saveAll(Arrays.asList(contact));
+		
+		config.close();
 	}
 }

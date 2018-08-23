@@ -14,83 +14,75 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.douglas.demospringmongo.domain.Address;
 import com.douglas.demospringmongo.domain.Client;
-import com.douglas.demospringmongo.dto.ClientDTO;
-import com.douglas.demospringmongo.service.AddressService;
+import com.douglas.demospringmongo.domain.Contact;
+import com.douglas.demospringmongo.dto.ContactDTO;
 import com.douglas.demospringmongo.service.ClientService;
-
+import com.douglas.demospringmongo.service.ContactService;
 
 @RestController
-@RequestMapping(value = "/clients")
-public class ClientController {
+@RequestMapping(value = "/contacts")
+public class ContactController {
 	
+	@Autowired
+	private ContactService contactService;
 	@Autowired
 	private ClientService clientService;
-	@Autowired
-	private AddressService addressService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ResponseEntity<List<Client>> findAll() {
-		List<Client> clients = clientService.findAll();
+	public ResponseEntity<List<Contact>> findAll() {
+		List<Contact> contacts = contactService.findAll();
 		
-		return ResponseEntity.ok().body(clients);
+		return ResponseEntity.ok().body(contacts);
 	}
 		
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Client> findOne(@PathVariable Integer id) {
-		Client client = clientService.findOne(id);
+	public ResponseEntity<Contact> findOne(@PathVariable Integer id) {
+		Contact contact = contactService.findOne(id);
 		
-		return ResponseEntity.ok().body(client);
+		return ResponseEntity.ok().body(contact);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Client> insert(@RequestBody @Valid ClientDTO clientDTO) {
+	public ResponseEntity<Contact> insert(@RequestBody @Valid ContactDTO contactDTO) {
 		
-		Client client = new Client(
+		Client client = clientService.findOne(contactDTO.getClient());
+		
+		Contact contact = new Contact(
 				null, 
-				clientDTO.getName());
-		
-		client = clientService.insert(client);
-		
-		Address address = new Address(
-				null, 
-				clientDTO.getAddress(), 
-				clientDTO.getType(), 
-				clientDTO.getNumber(), 
-				clientDTO.getCity(),
-				clientDTO.getState(), 
-				clientDTO.getZipCode(),
+				contactDTO.getName(), 
+				contactDTO.getPhone(), 
 				client);
 		
-		client.setAddress(address);		
-		address = addressService.insert(address);		
+		contact = contactService.insert(contact);		
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(client.getId()).toUri();		
+				.path("/{id}").buildAndExpand(contact.getId()).toUri();		
 						
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
-		clientService.deleteOne(id);		
+		contactService.deleteOne(id);		
 	
 		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@PathVariable Integer id, 
-										@RequestBody @Valid ClientDTO clientDTO) {
+										@RequestBody @Valid ContactDTO contactDTO) {
 		
-		Client client = clientService.findOne(id);
+		Contact contact = contactService.findOne(id);
 		
-		Client newClient = new Client(
-				client.getId(), 
-				clientDTO.getName());
+		Contact newContact = new Contact(
+				contact.getId(), 
+				contactDTO.getName(),
+				contactDTO.getPhone(),
+				contact.getClient());
 		
-		client = clientService.update(newClient);		
+		contact = contactService.update(newContact);		
 		
 		return ResponseEntity.noContent().build();
-	}	
+	}		
 }

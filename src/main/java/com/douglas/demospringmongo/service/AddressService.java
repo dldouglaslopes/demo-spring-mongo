@@ -1,5 +1,6 @@
 package com.douglas.demospringmongo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -16,6 +17,18 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 	
+	public Address findOne(Integer id) {
+		Optional<Address> address = addressRepository.findById(id);
+		
+		return address.orElse(null);
+	}
+	
+	public List<Address> findAll() {
+		List<Address> addresses = addressRepository.findAll();
+		
+		return addresses;
+	}
+	
 	@Transactional
 	public Address insert(Address address) {
 		address.setId(null);
@@ -25,7 +38,7 @@ public class AddressService {
 	}
 
 	public Address update(Address address) {
-		Address newAddress = find(address.getId());
+		Address newAddress = findOne(address.getId());
 		
 		newAddress.setName(address.getName());
 		newAddress.setNumber(address.getNumber());
@@ -38,10 +51,9 @@ public class AddressService {
 		return addressRepository.save(newAddress);
 	}
 
-	private Address find(Integer id) {
-		Optional<Address> address = addressRepository.findById(id);
-		
-		return address.orElse(null);
+	public void deleteOne(Integer id) {
+		if (findOne(id) != null) {
+			addressRepository.deleteById(id);
+		}
 	}
-
 }
