@@ -1,28 +1,16 @@
 package com.douglas.demospringmongo.dto;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ClientDTO implements Serializable{
-	private static final long serialVersionUID = 1L;
+import com.douglas.demospringmongo.domain.Address;
+import com.douglas.demospringmongo.domain.Contact;
+
+public class ClientDTO {
 	
-	private Integer id;
 	private String name;
-	private String address;
-	private String type;
-	private String number;
-	private String city;
-	private String state;
-	private String zipCode;	
-	
-	public ClientDTO() {}		
-
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	private Address address;
+	private List<Contact> contacts = new ArrayList<>();
 	
 	public String getName() {
 		return name;
@@ -32,51 +20,19 @@ public class ClientDTO implements Serializable{
 		this.name = name;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-	public String getType() {
-		return type;
+	public List<Contact> getContacts() {
+		return contacts;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
 	}
 }
