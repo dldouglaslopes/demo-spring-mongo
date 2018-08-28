@@ -22,12 +22,12 @@ public class ClientController {
 	ClientRepository clientRepository;
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public List<Client> listClient(){
+	public List<Client> list(){
 		return this.clientRepository.findAll();
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public Client saveClient(@RequestBody Client client) {
+	public Client save(@RequestBody Client client) {
 		return this.clientRepository.save(client);
 	}
 	
@@ -42,7 +42,7 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public Client updateClient(@RequestBody Client client, @PathVariable String id) {
+	public Client update(@RequestBody Client client, @PathVariable String id) {
 		return this.clientRepository.findById(id).map(c -> this.clientRepository.save(client)).orElseThrow(IllegalStateException::new);
 	}
 }
