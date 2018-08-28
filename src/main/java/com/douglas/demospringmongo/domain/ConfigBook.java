@@ -15,6 +15,7 @@ public class ConfigBook {
 	private Address address;	
 	private List<Contact> contacts = new ArrayList<>();
 	private List<IPAddress> ipAddresses = new ArrayList<>();
+	private List<CostCenter> costCenters = new ArrayList<>();
 	
 	public ConfigBook() {}
 
@@ -23,7 +24,8 @@ public class ConfigBook {
 			String name,
 			Address address,
 			List<Contact> contacts,
-			List<IPAddress> ipAddresses) {
+			List<IPAddress> ipAddresses,
+			List<CostCenter> costCenters) {
 		
 		super();
 		this.id = id;
@@ -31,6 +33,7 @@ public class ConfigBook {
 		this.address = address;
 		this.contacts = contacts;		
 		this.ipAddresses = ipAddresses;
+		this.setCostCenters(costCenters);
 	}
 
 	public String getId() {
@@ -71,6 +74,14 @@ public class ConfigBook {
 
 	public void setIpAddresses(List<IPAddress> ipAddresses) {
 		this.ipAddresses = ipAddresses;
+	}
+
+	public List<CostCenter> getCostCenters() {
+		return costCenters;
+	}
+
+	public void setCostCenters(List<CostCenter> costCenters) {
+		this.costCenters = costCenters;
 	}
 
 
