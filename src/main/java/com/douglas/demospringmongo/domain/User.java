@@ -1,12 +1,9 @@
 package com.douglas.demospringmongo.domain;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class User {
 	
 	private Integer id;
-	private String email;
+	private String name;
 	private String password;
 	
 	public User() {}
@@ -18,13 +15,13 @@ public class User implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getEmail() {
-		return email;
+	
+	public String getName() {
+		return name;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {
