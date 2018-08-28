@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.douglas.demospringmongo.domain.Client;
-import com.douglas.demospringmongo.repository.ClientRepository;
+import com.douglas.demospringmongo.domain.ConfigBook;
+import com.douglas.demospringmongo.repository.ConfigBookRepository;
 
 
 @RestController
@@ -19,20 +19,20 @@ import com.douglas.demospringmongo.repository.ClientRepository;
 public class ClientController {
 	
 	@Autowired
-	ClientRepository clientRepository;
+	ConfigBookRepository clientRepository;
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public List<Client> list(){
+	public List<ConfigBook> list(){
 		return this.clientRepository.findAll();
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public Client save(@RequestBody Client client) {
+	public ConfigBook save(@RequestBody ConfigBook client) {
 		return this.clientRepository.save(client);
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public Optional<Client> findById(@PathVariable String id) {
+	public Optional<ConfigBook> findById(@PathVariable String id) {
 		return this.clientRepository.findById(id);
 	}
 	
@@ -42,7 +42,7 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public Client update(@RequestBody Client client, @PathVariable String id) {
+	public ConfigBook update(@RequestBody ConfigBook client, @PathVariable String id) {
 		return this.clientRepository.findById(id).map(c -> this.clientRepository.save(client)).orElseThrow(IllegalStateException::new);
 	}
 }

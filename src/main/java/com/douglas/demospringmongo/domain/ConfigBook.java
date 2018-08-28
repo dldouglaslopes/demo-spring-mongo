@@ -7,27 +7,30 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Client {	
+public class ConfigBook {	
 	
 	@Id
 	private String id;	
 	private String name;
 	private Address address;	
 	private List<Contact> contacts = new ArrayList<>();
+	private List<IPAddress> ipAddresses = new ArrayList<>();
 	
-	public Client() {}
+	public ConfigBook() {}
 
-	public Client(
+	public ConfigBook(
 			String id,
 			String name,
 			Address address,
-			List<Contact> contacts) {
+			List<Contact> contacts,
+			List<IPAddress> ipAddresses) {
 		
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.contacts = contacts;		
+		this.ipAddresses = ipAddresses;
 	}
 
 	public String getId() {
@@ -60,6 +63,14 @@ public class Client {
 
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
+	}
+
+	public List<IPAddress> getIpAddresses() {
+		return ipAddresses;
+	}
+
+	public void setIpAddresses(List<IPAddress> ipAddresses) {
+		this.ipAddresses = ipAddresses;
 	}
 
 
