@@ -16,7 +16,7 @@ import com.douglas.demospringmongo.repository.ConfigBookRepository;
 
 @RestController
 @RequestMapping(value = "/clients")
-public class ClientController {
+public class ConfigBookController {
 	
 	@Autowired
 	ConfigBookRepository clientRepository;
