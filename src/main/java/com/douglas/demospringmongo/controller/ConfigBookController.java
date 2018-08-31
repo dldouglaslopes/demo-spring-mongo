@@ -27,8 +27,8 @@ public class ConfigBookController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ConfigBook save(@RequestBody ConfigBook client) {
-		return this.clientRepository.save(client);
+	public ConfigBook save(@RequestBody ConfigBook configBook) {
+		return this.clientRepository.save(configBook);
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
@@ -42,7 +42,7 @@ public class ConfigBookController {
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	public ConfigBook update(@RequestBody ConfigBook client, @PathVariable String id) {
-		return this.clientRepository.findById(id).map(c -> this.clientRepository.save(client)).orElseThrow(IllegalStateException::new);
+	public ConfigBook update(@RequestBody ConfigBook configBook, @PathVariable String id) {
+		return this.clientRepository.findById(id).map(c -> this.clientRepository.save(configBook)).orElseThrow(IllegalStateException::new);
 	}
 }

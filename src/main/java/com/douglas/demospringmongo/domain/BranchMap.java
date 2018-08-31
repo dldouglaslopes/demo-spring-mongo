@@ -10,6 +10,8 @@ public class BranchMap {
 	private String typeEndpoint;
 	private String password;
 	
+	public BranchMap() {}
+	
 	public BranchMap(String branch, String ddr, String name, String context, CostCenter costCenter, String typeEndpoint,
 			String password) {
 		super();

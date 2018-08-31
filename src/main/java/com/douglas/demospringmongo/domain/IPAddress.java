@@ -7,6 +7,8 @@ public class IPAddress {
 	private String mask;
 	private String gateway;
 	
+	public IPAddress() {}
+	
 	public IPAddress(String ip, String dns, String mask, String gateway) {
 		super();
 		this.ip = ip;

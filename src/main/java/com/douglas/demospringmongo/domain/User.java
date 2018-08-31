@@ -8,6 +8,8 @@ public class User {
 	private String email;
 	private int codeAgentBranch;
 	
+	public User() {}
+	
 	public User(String name, String login, String password, String email, int codeAgentBranch) {
 		super();
 		this.name = name;

@@ -5,6 +5,8 @@ public class CostCenter {
 	private String name;
 	private String description;
 	
+	public CostCenter() {}
+	
 	public CostCenter(String name, String description) {
 		super();
 		this.name = name;

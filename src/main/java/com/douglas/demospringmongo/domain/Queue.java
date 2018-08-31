@@ -5,6 +5,8 @@ public class Queue {
 	private String name;
 	private String description;
 	
+	public Queue() {}
+	
 	public Queue(String name, String description) {
 		super();
 		this.name = name;
