@@ -13,9 +13,12 @@ public class ConfigBook {
 	private String id;	
 	private String name;
 	private Address address;	
+	private User user;
 	private List<Contact> contacts = new ArrayList<>();
 	private List<IPAddress> ipAddresses = new ArrayList<>();
 	private List<CostCenter> costCenters = new ArrayList<>();
+	private List<BranchMap> branchMaps = new ArrayList<>();
+	private List<Queue> queues = new ArrayList<>();
 	
 	public ConfigBook() {}
 
@@ -23,9 +26,12 @@ public class ConfigBook {
 			String id,
 			String name,
 			Address address,
+			User user,
 			List<Contact> contacts,
 			List<IPAddress> ipAddresses,
-			List<CostCenter> costCenters) {
+			List<CostCenter> costCenters,
+			List<BranchMap> branchMaps,
+			List<Queue> queues) {
 		
 		super();
 		this.id = id;
@@ -33,7 +39,9 @@ public class ConfigBook {
 		this.address = address;
 		this.contacts = contacts;		
 		this.ipAddresses = ipAddresses;
-		this.setCostCenters(costCenters);
+		this.costCenters = costCenters;
+		this.branchMaps = branchMaps;
+		this.queues = queues;
 	}
 
 	public String getId() {
@@ -60,6 +68,14 @@ public class ConfigBook {
 		this.address = address;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public List<Contact> getContacts() {
 		return contacts;
 	}
@@ -82,6 +98,22 @@ public class ConfigBook {
 
 	public void setCostCenters(List<CostCenter> costCenters) {
 		this.costCenters = costCenters;
+	}
+
+	public List<BranchMap> getBranchMaps() {
+		return branchMaps;
+	}
+
+	public void setBranchMaps(List<BranchMap> branchMaps) {
+		this.branchMaps = branchMaps;
+	}
+
+	public List<Queue> getQueues() {
+		return queues;
+	}
+
+	public void setQueues(List<Queue> queues) {
+		this.queues = queues;
 	}
 
 
