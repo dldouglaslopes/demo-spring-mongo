@@ -1,5 +1,6 @@
 package com.douglas.demospringmongo.domain;
 
+//SQL
 public class User {
 	
 	private String name;
@@ -59,4 +60,20 @@ public class User {
 		this.codeAgentBranch = codeAgentBranch;
 	}	
 	
+	public String toSql(User user) {		
+		String sql = "INSERT INTO user (name, login, password, email, codeAgentBranch) "
+					+ "VALUES (\"" 
+					+ user.getName()
+					+ "\",\"" 
+					+ user.getLogin() 
+					+ "\",\"" 
+					+ user.getPassword() 
+					+ "\",\"" 
+					+ user.getEmail() 
+					+ "\"," 
+					+ user.getCodeAgentBranch() 
+					+ ");\n";				
+	
+		return sql;
+	}
 }
